@@ -1,0 +1,16 @@
+.header {
+    background-color: green;
+}
+.body{
+    display: flex;
+}
+.nav{
+    display: flex;
+    /*flex-direction: column;*/
+    flex: 0 1 30%;
+}
+
+.content{
+    flex: 0 1 70%;
+    background-color: yellow;
+}
