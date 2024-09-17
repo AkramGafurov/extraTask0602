@@ -14,3 +14,13 @@
     flex: 0 1 70%;
     background-color: yellow;
 }
+
+.navlink {
+    color: #282c34;
+    text-decoration: none;
+}
+
+.nav a.active {
+    color: #7fb8f1;
+    text-decoration: underline;
+}
