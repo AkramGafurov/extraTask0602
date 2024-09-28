@@ -1,10 +1,13 @@
 import styles from './Site.module.css';
-import PageOne from "./PageOne";
-import PageTwo from "./PageTwo";
-import PageThree from "./PageThree";
-import {Navigate, NavLink, Route, Routes} from "react-router-dom";
+// import PageOne from "./PageOne";
+// import PageTwo from "./PageTwo";
+// import PageThree from "./PageThree";
+import {Navigate, NavLink, Route, Routes, useParams} from "react-router-dom";
 import Error404 from "./Error404";
-import styled from "styled-components";
+// import styled from "styled-components";
+import { S } from './__styles';
+import {Page} from "./Page";
+import {dataState} from "../data/dataState";
 
 
 function Site() {
@@ -18,46 +21,30 @@ function Site() {
                 {/*         to={'/pageTwo'}>PageTwo</NavLink>*/}
                 {/*<NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}*/}
                 {/*         to={'/pageThree'}>PageThree</NavLink>*/}
-                <NavWrapper><NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}
-                                     to={'/pageOne'}>PageOne</NavLink></NavWrapper>
-                <NavWrapper><NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}
-                                     to={'/pageTwo'}>PageTwo</NavLink></NavWrapper>
-                <NavWrapper> <NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}
-                                      to={'/pageThree'}>PageThree</NavLink></NavWrapper>
+                <S.NavWrapper><NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}
+                                     to={'page/0'}>PageOne</NavLink></S.NavWrapper>
+                <S.NavWrapper><NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}
+                                     to={'page/1'}>PageTwo</NavLink></S.NavWrapper>
+                <S.NavWrapper> <NavLink className={({isActive}) => isActive ? styles.active : styles.navlink}
+                                      to={'page/2'}>PageThree</NavLink></S.NavWrapper>
 
 
             </div>
             <div className={styles.content}>
                 <Routes>
-                    <Route path={"/"} element={<Navigate to={'/pageOne'}/>}/>
-                    <Route path={"/pageOne"} element={<PageOne/>}/>
-                    <Route path={"/pageTwo"} element={<PageTwo/>}/>
-                    <Route path={"/pageThree"} element={<PageThree/>}/>
+                    {/*<Route path={"/"} element={<Navigate to={'/pageOne'}/>}/>*/}
+                    {/*<Route path={"/pageOne"} element={<PageOne/>}/>*/}
+                    {/*<Route path={"/pageTwo"} element={<PageTwo/>}/>*/}
+                    {/*<Route path={"/pageThree"} element={<PageThree/>}/>*/}
+                    {/*<Route path={"/*"} element={<Error404/>}/>*/}
+                    <Route path={"/"} element={<Navigate to={'/page/0'}/>}/>
+                    <Route path={"/page/:id"} element={<Page pages={dataState.pages}/>}/>
                     <Route path={"/*"} element={<Error404/>}/>
-
+                    <Route path={"/*"} element={<Navigate to={'/page/Error404'}/>}/>
                 </Routes>
             </div>
         </div>
     </div>
 }
-
-const NavWrapper = styled.div`
-    margin-left: 10px;
-
-    & > a {
-        color: #282c34;
-        text-decoration: none;
-    }
-
-    & > a.active {
-        color: #7fb8f1;
-        text-decoration: underline;
-    }
-
-    & > a:hover {
-        color: steelblue;
-    }
-`
-
 
 export default Site;
